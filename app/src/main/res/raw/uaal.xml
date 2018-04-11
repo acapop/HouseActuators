@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<application>
+    <permissions>
+        <mw.bus.context>
+            <requirement>
+                <title>Received temperature</title>
+                <description>CONTEXT SUBSCRIBER PATTERN: All changes for temperature</description>
+                <action>es.upv.TEMPERATUREP_RECEIVE</action>
+                <category>android.intent.category.DEFAULT</category>
+                <remote>true</remote>
+                <output>
+                    <key>http://www.w3.org/1999/02/22-rdf-syntax-ns#subject</key>
+                    <value>http://ontology.universAAL.org/Test.owl#{sender}</value>
+                </output>
+                <output>
+                    <key>http://www.w3.org/1999/02/22-rdf-syntax-ns#object</key>
+                    <value>http://ontology.universAAL.org/Test.owl#{type}</value>
+                </output>
+                <output>
+                    <key>http://www.w3.org/1999/02/22-rdf-syntax-ns#object
+                        http://ontology.universaal.org/Measurement.owl#value</key>
+                    <value>temp</value>
+                </output>
+                <serialization>
+                    <![CDATA[
+@prefix ns: <http://ontology.universAAL.org/PersonalHealthDevice.owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix ns1: <http://ontology.universaal.org/HealthMeasurement.owl#> .
+@prefix : <http://www.w3.org/2002/07/owl#> .
+<http://ontology.universAAL.org/SimpleHealthclient.owl#cep1> a <http://ontology.universAAL.org/Context.owl#ContextEventPattern> ;
+  <http://www.w3.org/2000/01/rdf-schema#subClassOf> [
+      a :Restriction ;
+      :allValuesFrom  <http://ontology.universaal.org/PhThing.owl#Device> ;
+      :onProperty rdf:subject
+    ] ,
+    [
+      :hasValue <http://ontology.universAAL.org/Device.owl#hasValue> ;
+      a :Restriction ;
+      :onProperty rdf:predicate
+    ] .
+]]>
+                </serialization>
+            </requirement>
+        </mw.bus.context>
+    </permissions>
+</application>
